@@ -21,6 +21,7 @@ class hotfile_com:
 		browser = urllib.urlopen( "http://hotfile.com/checkfiles.html", params )
 		res_urls = browser.read()
 		res_urls = self.url_res_pattern.findall( res_urls )
+		print len( res_urls )
 		if len( res_urls ) == len( self.check_urls ):
 			return 1
 		else:
