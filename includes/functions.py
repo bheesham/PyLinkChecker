@@ -1,4 +1,7 @@
+# Copyright (C) 2011 Bheesham Persaud
+# The license is available in LICENSE
 import urllib
+from itertools import izip_longest
 
 # change the user agent
 class AppURLopener( urllib.FancyURLopener ):
@@ -26,3 +29,7 @@ def unique(seq, idfun=None):
         seen[marker] = 1 
         result.append(item) 
     return result
+
+def split_list( iterable, n, padvalue="" ):
+    """grouper(3, 'abcdefg', 'x') --> ('a','b','c'), ('d','e','f'), ('g','x','x') -- J.F. Sebastian"""
+    return izip_longest( *[iter( iterable )]*n, fillvalue=padvalue )

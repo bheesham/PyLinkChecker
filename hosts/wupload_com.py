@@ -5,11 +5,11 @@ import re
 
 from includes.functions import *
 
-class fileserve_com:
+class wupload_com:
 	def init( self ):
-		self.url_pattern = re.compile( r'(http://www\.fileserve\.com/file/([A-Za-z0-9]+))', re.I )
-		self.result_pattern = re.compile( r'<td>(http://www\.fileserve\.com/file/([A-Za-z0-9]+))</td><td>--</td>', re.I )
-		self.url = 'www.fileserve.com'
+		self.url_pattern = re.compile( r'(http:\/\/www\.wupload\.com\/file\/([0-9]+)/([A-Za-z0-9_\-\.]+))', re.I )
+		self.result_pattern = re.compile( r'(http:\/\/www\.wupload\.com\/file\/([0-9]+)/([A-Za-z0-9_\-\.]+))</span></td><tdclass="fileName"><span>-', re.I )
+		self.url = 'www.wupload.com'
 		return None
 	def parse( self, text ):
 		matches = self.url_pattern.findall( text )
@@ -25,8 +25,8 @@ class fileserve_com:
 		files_split = split_list( files_list, 50 )
 		for files in files_split:
 			files_joined = "\r\n".join( files )
-			params = urllib.urlencode({ 'urls': files_joined, 'submit': ' Check Urls ' })
-			browser = urllib.urlopen( "http://fileserve.com/link-checker.php", params )
+			params = urllib.urlencode({ 'redirect': '/', 'links': files_joined })
+			browser = urllib.urlopen( "http://www.wupload.com/link-checker", params )
 			res_urls = browser.read()
 			res_urls = res_urls.replace( "\r", '' )
 			res_urls = res_urls.replace( "\n", '' )

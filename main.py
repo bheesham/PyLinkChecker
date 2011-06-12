@@ -1,25 +1,23 @@
-from includes.database import *
-from includes.functions import *
+# Copyright (C) 2011 Bheesham Persaud
+# The license is available in LICENSE
+from linkchecker import *
 
 
-from hosts.fileserve_com import *
-from hosts.hotfile_com import *
-from hosts.filesonic_com import *
+# NOTE: filesonic is a little girl
 
-# fileserve X
-# filesonic
-# hotfile X
+linkchecker = linkchecker()
 
-hotfile_com = hotfile_com()
-fileserve_com = fileserve_com()
-filesonic_com = filesonic_com()
+links = " https://rapidshare.com/files/1754580889/smbc_save_data_sophia.txt "
 
-# example:
-if filesonic_com.parse( "http://www.filesonic.com/file/251557719/Available.zip" ) == 1:
-	ratio = filesonic_com.check()
-	if ratio == 1:
-		print "there are no dead links"
-	else:
-		print ratio
-else:
-	print "meh"
+parsed_links = []
+parsed_links = linkchecker.parse( links )
+result = linkchecker.check( parsed_links )
+
+total = len( parsed_links )
+total_alive = 0
+total_dead = 0
+
+for host, alive_urls, dead_urls in result:
+	print "For host: {0}".format( host )
+	print "  Alive: {0}".format( len( alive_urls ) )
+	print "  Dead: {0}".format( len( dead_urls ) )

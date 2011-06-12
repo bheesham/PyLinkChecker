@@ -1,16 +1,14 @@
-This is a link checker.
+Copyright (C) 2011 Bheesham Persaud
+The license is available in LICENSE
 
-Hopefully in the future it will support
-checking links on the following:
- * Wordpress
- * phpBB
- * vBulletin
- * IPB
- * Joomla!
- * Other websites
+This is a Python program to check links.
+More information coming later.
 
-Hopefully it'll also support checking:
- * RapidShare.com
- * MegaUpload.com
- * FileServe.com
- * Et cetera
+Currently, this only checks links from the following hosts:
+- rapidshare.com
+- hotfile.com
+- fileserve.com
+- oron.com
+- wupload.com
+
+A list of hosts I plan to include is available in the "Undone Hosts" file.

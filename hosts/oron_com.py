@@ -5,11 +5,11 @@ import re
 
 from includes.functions import *
 
-class fileserve_com:
+class oron_com:
 	def init( self ):
-		self.url_pattern = re.compile( r'(http://www\.fileserve\.com/file/([A-Za-z0-9]+))', re.I )
-		self.result_pattern = re.compile( r'<td>(http://www\.fileserve\.com/file/([A-Za-z0-9]+))</td><td>--</td>', re.I )
-		self.url = 'www.fileserve.com'
+		self.url_pattern = re.compile( r'(http\:\/\/oron\.com\/([A-Za-z0-9]+))', re.I )
+		self.result_pattern = re.compile( r'(http\:\/\/oron\.com\/([A-Za-z0-9]+))\/([A-Za-z0-9 \.]+).html found', re.I )
+		self.url = 'oron.com'
 		return None
 	def parse( self, text ):
 		matches = self.url_pattern.findall( text )
@@ -21,18 +21,15 @@ class fileserve_com:
 		else:
 			return None
 	def check( self, files_list ):
-		dead = []
+		alive = []
 		files_split = split_list( files_list, 50 )
 		for files in files_split:
 			files_joined = "\r\n".join( files )
-			params = urllib.urlencode({ 'urls': files_joined, 'submit': ' Check Urls ' })
-			browser = urllib.urlopen( "http://fileserve.com/link-checker.php", params )
+			params = urllib.urlencode({ 'list': files_joined, 'process': 'Submit', 'op': 'checkfiles' })
+			browser = urllib.urlopen( "http://oron.com/checkfiles.html", params )
 			res_urls = browser.read()
-			res_urls = res_urls.replace( "\r", '' )
-			res_urls = res_urls.replace( "\n", '' )
-			res_urls = res_urls.replace( " ", '' )
 			res_urls = self.result_pattern.findall( res_urls )
 			for res_url in res_urls:
-				dead.append( res_url[0] )
+				alive.append( res_url[0] )
 				files_list.remove( res_url[0] )
-		return [ self.url, files_list, dead ]
+		return [ self.url, alive, files_list ]
