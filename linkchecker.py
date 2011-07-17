@@ -11,6 +11,7 @@ from hosts.hotfile_com import *
 from hosts.fileserve_com import *
 from hosts.wupload_com import *
 from hosts.oron_com import *
+from hosts.easy_share_com import *
 
 class linkchecker:
 	def __init__( self ):
@@ -23,6 +24,7 @@ class linkchecker:
 		self.hosts.append( fileserve_com() )
 		self.hosts.append( wupload_com() )
 		self.hosts.append( oron_com() )
+		self.hosts.append( easy_share_com() )
 		
 		# after all of the sites are loaded into that array
 		# start compiling the regex!

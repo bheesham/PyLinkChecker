@@ -7,8 +7,8 @@ from includes.functions import *
 
 class hotfile_com:
 	def init( self ):
-		self.url_pattern = re.compile( r'(http:\/\/hotfile\.com\/dl\/([0-9]+)/([A-Za-z0-9]+)/([A-Za-z0-9\-_\.]+)\.html)', re.I )
-		self.result_pattern = re.compile( r'href="(http:\/\/hotfile\.com\/dl\/([0-9]+)/([A-Za-z0-9]+)/([A-Za-z0-9\-_\.]+)\.html)">', re.I )
+		self.url_pattern = re.compile( r'(http://hotfile\.com/dl/([0-9]+)/([A-Za-z0-9]+)/([A-Za-z0-9\-_\.]+)\.html)', re.I )
+		self.result_pattern = re.compile( r'href="(http://hotfile\.com/dl/([0-9]+)/([A-Za-z0-9]+)/([A-Za-z0-9\-_\.]+)\.html)">', re.I )
 		self.url = 'hotfile.com'
 		return None
 	def parse( self, text ):

@@ -7,7 +7,7 @@ from includes.functions import *
 
 class rapidshare_com:
 	def init( self ):
-		self.url_pattern = re.compile( r'(http:\/\/rapidshare\.com\/files\/([0-9]+)/([A-Za-z0-9_\-\.]+))', re.I )
+		self.url_pattern = re.compile( r'(http://rapidshare\.com/files/([0-9]+)/([A-Za-z0-9_\-\.]+))', re.I )
 		self.result_pattern = re.compile( r'([0-9]+),([A-Za-z0-9_\-\.]+),0,0,0,0,0', re.I )
 		self.url = 'rapidshare.com'
 		return None
